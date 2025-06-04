@@ -2,55 +2,70 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Booking Confirmed - Braiding by Mary NYC</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmed | Braiding By Mary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff7f2, #ffe6ea);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      color: #333;
+    }
+
+    .card {
+      background-color: #fff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      max-width: 420px;
+      width: 100%;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #d63b80;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    a.button {
+      background-color: #d63b80;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #b12e68;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-<body style="margin:0; background:#fdf4f9; padding:30px 0; font-family:'Segoe UI', Tahoma, sans-serif; color:#444;">
-  <div style="background:#fff; max-width:640px; margin:0 auto; border-radius:20px; padding:32px; border:2px solid #f48fb1; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-
-    <!-- Header -->
-    <div style="text-align:center; margin-bottom:20px;">
-      <img src="https://i.imgur.com/bbzXVqH.png" alt="Braiding by Mary NYC" style="width:100px;" />
-      <h1 style="color:#d81b60; font-size:24px; margin:10px 0 6px;">Booking Confirmed 💖</h1>
-    </div>
-
-    <!-- Intro -->
-    <p style="text-align:center; font-size:16px; line-height:1.5; margin-bottom:25px;">
-      Hi <strong>{{FirstName}}</strong>, your glam session at <strong>Braiding by Mary NYC</strong> is officially locked in!<br />
-      Here’s everything you need to know:
-    </p>
-
-    <!-- Appointment Details -->
-    <div style="background:#fff0f6; border:1px dashed #f48fb1; border-radius:12px; padding:20px; font-size:15px; line-height:1.6; margin-bottom:20px;">
-      <table style="width:100%; border-collapse:collapse;">
-        <tr><td style="padding:8px; color:#d81b60; font-weight:600; width:130px;">Service:</td><td style="padding:8px;">{{ServiceName}}</td></tr>
-        <tr><td style="padding:8px; color:#d81b60; font-weight:600;">Date:</td><td style="padding:8px;">{{Date}}</td></tr>
-        <tr><td style="padding:8px; color:#d81b60; font-weight:600;">Time:</td><td style="padding:8px;">{{Time}}</td></tr>
-        <tr><td style="padding:8px; color:#d81b60; font-weight:600;">Name:</td><td style="padding:8px;">{{FullName}}</td></tr>
-        <tr><td style="padding:8px; color:#d81b60; font-weight:600;">Phone:</td><td style="padding:8px;">{{Phone}}</td></tr>
-        <tr><td style="padding:8px; color:#d81b60; font-weight:600;">Email:</td><td style="padding:8px;">{{Email}}</td></tr>
-        <tr><td style="padding:8px; color:#d81b60; font-weight:600;">Price:</td><td style="padding:8px;">{{Price}}</td></tr>
-      </table>
-    </div>
-
-    <!-- Buttons -->
-    <div style="text-align:center; margin:30px 0;">
-      <a href="mailto:braidinghairmary@gmail.com" style="display:inline-block; background:#d81b60; color:#fff; padding:12px 22px; border-radius:8px; text-decoration:none; font-weight:bold; font-size:15px; margin:6px;">📩 Contact Us</a>
-      <a href="https://maps.google.com/?q=2368+7th+Avenue,+New+York,+NY" style="display:inline-block; background:#d81b60; color:#fff; padding:12px 22px; border-radius:8px; text-decoration:none; font-weight:bold; font-size:15px; margin:6px;">📍 Get Directions</a>
-    </div>
-
-    <!-- Social -->
-    <div style="text-align:center; margin-top:30px; font-size:22px;">
-      <a href="https://instagram.com/braidingbymarynyc" target="_blank" style="margin:0 10px; text-decoration:none; color:#d81b60;">📷</a>
-      <a href="https://tiktok.com/@braidingbymarynyc" target="_blank" style="margin:0 10px; text-decoration:none; color:#d81b60;">🎵</a>
-    </div>
-
-    <!-- Footer -->
-    <div style="font-size:13px; color:#888; text-align:center; margin-top:35px; line-height:1.5;">
-      💕 Thank you for booking with <strong>Braiding by Mary NYC</strong>!<br />
-      We can’t wait to make you feel fabulous 👑<br />
-      Need help? Just reply to this email.
-    </div>
+<body>
+  <div class="card">
+    <h1>💖 Booking Received!</h1>
+    <p>Thank you for booking with Braiding By Mary. We'll contact you soon to confirm your appointment.</p>
+    <a href="index.html" class="button">Back to Home</a>
   </div>
 </body>
 </html>
+
