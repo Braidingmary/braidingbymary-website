@@ -52,8 +52,6 @@
   </div>
 </section>
 
-
-
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
@@ -71,7 +69,7 @@
 
             <div class="services-grid">
                 <!-- Box Braids -->
-               <div class="service-card" data-category="Box-braids">
+               <div class="service-card" data-category="Braids">
   <div class="service-image">
     <video
       autoplay
@@ -139,7 +137,7 @@
                 </div>
 
                 <!-- Lemonade Braids -->
-                <div class="service-card" data-category="Braids">
+                <div class="service-card" data-category="Cornrows Styles">
                     <div class="service-image">
                         <img src="https://cdn.glitch.global/069754c1-d948-4244-9bcd-418535e6b802/IMG_0472.JPEG?v=1746895047453" alt="Lemonade Braids">
                     </div>
@@ -192,7 +190,6 @@
     </video>
   </div>
 
-
                     <div class="service-info">
                         <div class="service-header">
                             <h3>Knotless Braids</h3>
@@ -213,7 +210,7 @@
   </div>
   <div class="service-info">
     <div class="service-header">
-      <h3>Men’s Cornrows</h3>
+      <h3>Men's Cornrows</h3>
       <span class="price">$40.00</span>
     </div>
     <div class="service-meta">
@@ -227,18 +224,18 @@
           <!-- Women's Cornrows -->
 <div class="service-card" data-category="Cornrows Styles">
   <div class="service-image">
-    <img src="https://cdn.glitch.global/069754c1-d948-4244-9bcd-418535e6b802/Cornrows-bob-braids-hairstyle.jpg.webp?v=1747093860500" alt="Women’s Cornrows">
+    <img src="https://cdn.glitch.global/069754c1-d948-4244-9bcd-418535e6b802/Cornrows-bob-braids-hairstyle.jpg.webp?v=1747093860500" alt="Women's Cornrows">
   </div>
   <div class="service-info">
     <div class="service-header">
-      <h3> Women’s Cornrows</h3>
+      <h3> Women's Cornrows</h3>
       <span class="price">$40.00</span>
     </div>
     <div class="service-meta">
       <span><i class="far fa-clock"></i> 1.5h</span>
       <span><i class="fas fa-tag"></i> Cornrows</span>
     </div>
-    <p class="service-description">Classic and clean women’s  cornrows. Takes about 1.5 hours.</p>
+    <p class="service-description">Classic and clean women's  cornrows. Takes about 1.5 hours.</p>
     <button class="book-service-btn">Book Now</button>
   </div>
 </div>
@@ -421,26 +418,6 @@ Disclaimer: braiding hair will be included without any charge.
     <button class="book-service-btn">Book Now</button>
   </div>
 </div>
-<!-- Kid's Fulani Braids -->
-<div class="service-card" data-category="kid braid styles">
-  <div class="service-image">
-    <img src="https://cdn.glitch.global/069754c1-d948-4244-9bcd-418535e6b802/SmartSelect_20230824-152817_Instagram.jpg?v=1747094539301" alt="Kid's Fulani Braids">
-  </div>
-  <div class="service-info">
-    <div class="service-header">
-      <h3>Kid's Fulani Braids</h3>
-      <span class="price">$120.00</span>
-    </div>
-    <div class="service-meta">
-      <span><i class="far fa-clock"></i> 2h</span>
-      <span><i class="fas fa-tag"></i> Kid Styles</span>
-    </div>
-    <p class="service-description">
-      The duration and money will depend on the length and size. But it starts at $120 and takes 2 hours.
-    </p>
-    <button class="book-service-btn">Book Now</button>
-  </div>
-</div>
 
         </div>
     </section>
@@ -617,88 +594,109 @@ Disclaimer: braiding hair will be included without any charge.
         </div>
     </section>
 
-   <!-- Booking Modal (Simplified) -->
+   <!-- Multi-Step Booking Modal -->
 <div id="bookingModal" class="modal">
-  <div class="modal-content">
+  <div class="modal-content booking-modal-content">
     <span class="close-modal">&times;</span>
-    <h2>Book Your Appointment</h2>
-
-    <form
-      id="bookingForm"
-      method="POST"
-      action="https://script.google.com/macros/s/AKfycbypWGQZp6ZJJqeTVwAk8i7mv_Nj_dY6hT8qRtML3UU4zHHSFWjVtPBHA9vdmFXLZWRzFg/exec"
-      class="booking-form"
-    >
-      <div class="form-group">
-        <label for="fullName">Full Name</label>
-        <input
-          type="text"
-          id="fullName"
-          name="name"
-          placeholder="Enter your full name"
-          required
-        >
+    
+    <!-- Progress Steps -->
+    <div class="booking-steps">
+      <div class="step active" data-step="1">
+        <div class="step-number">1</div>
+        <div class="step-label">Service</div>
       </div>
-
-      <div class="form-group">
-        <label for="bookingEmail">Email Address</label>
-        <input
-          type="email"
-          id="bookingEmail"
-          name="email"
-          placeholder="Enter your email"
-          required
-        >
+      <div class="step" data-step="2">
+        <div class="step-number">2</div>
+        <div class="step-label">Date & Time</div>
       </div>
-
-      <div class="form-group">
-        <label for="serviceType">Service Type</label>
-        <select id="serviceType" name="service" required>
-          <option value="" disabled selected>Select a service</option>
-          <option value="Regular Box Braids">Regular Box Braids — $160.00 (3 h)</option>
-          <option value="Fulani Braids">Fulani Braids — $180.00 (3 h)</option>
-          <option value="Passion Twist">Passion Twist — $200.00 (4 h)</option>
-          <option value="Lemonade Braids">Lemonade Braids — $120.00 (2 h)</option>
-          <option value="Senegalese Twist">Senegalese Twist — $180.00 (3 h)</option>
-          <option value="Knotless Braids">Knotless Braids — $190.00 (3 h)</option>
-          <option value="Men’s Cornrows">Men’s Cornrows — $40.00 (1.5 h)</option>
-          <option value="Women’s Cornrows">Women’s Cornrows — $40.00 (1.5 h)</option>
-          <option value="Boho Knotless Braids">Boho Knotless Braids — $200.00 (4 h)</option>
-          <option value="Faux Locs">Faux Locs — $200.00 (4 h)</option>
-          <option value="Sew-In">Sew-In — $200.00 (2 h)</option>
-          <option value="Crochet">Crochet — from $150.00 (1 h)</option>
-          <option value="Kid’s Regular Box Braids">Kid’s Regular Box Braids — from $100.00 (2 h)</option>
-          <option value="Cornrow with Extensions (Straight Back)">Cornrow w/ Extensions (Straight Back) — $70.00 (1 h)</option>
-          <option value="Kid’s Fulani Braids">Kid’s Fulani Braids — $120.00 (2 h)</option>
-          <option value="Kid’s Lemonade Braids">Kid’s Lemonade Braids — $90.00 (2 h)</option>
-        </select>
+      <div class="step" data-step="3">
+        <div class="step-number">3</div>
+        <div class="step-label">Information</div>
       </div>
-
-      <div class="form-group">
-        <label for="bookingDate">Preferred Date</label>
-        <input
-          type="date"
-          id="bookingDate"
-          name="date"
-          required
-        >
+      <div class="step" data-step="4">
+        <div class="step-number">4</div>
+        <div class="step-label">Confirm</div>
       </div>
+    </div>
 
-      <div class="form-group">
-        <label for="bookingNotes">Additional Notes (optional)</label>
-        <textarea
-          id="bookingNotes"
-          name="notes"
-          rows="3"
-          placeholder="Any special requests?"
-        ></textarea>
+    <!-- Step 1: Service Selection -->
+    <div id="step1" class="step-content">
+      <h2>Choose Your Service</h2>
+      <div class="service-selection">
+        <!-- Services will be populated by JavaScript -->
       </div>
+      <div class="step-navigation">
+        <button class="next-btn" disabled>Next</button>
+      </div>
+    </div>
 
-      <button type="submit" class="submit-btn">Submit Booking</button>
-    </form>
+    <!-- Step 2: Date & Time Selection -->
+    <div id="step2" class="step-content" style="display: none;">
+      <h2>Select Date & Time</h2>
+      <div class="calendar">
+        <!-- Calendar will be populated by JavaScript -->
+      </div>
+      <div class="time-slots">
+        <!-- Time slots will be populated by JavaScript -->
+      </div>
+      <div class="step-navigation">
+        <button class="back-btn">Back</button>
+        <button class="next-btn" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Customer Information -->
+    <div id="step3" class="step-content" style="display: none;">
+      <h2>Your Information</h2>
+      <form id="bookingForm" class="booking-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bookingEmail">Email</label>
+            <input type="email" id="bookingEmail" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="notes">Special Requests (Optional)</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Any special requests or notes..."></textarea>
+        </div>
+      </form>
+      
+      <div class="step-navigation">
+        <button class="back-btn">Back</button>
+        <button class="next-btn" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Booking Summary -->
+    <div id="step4" class="step-content" style="display: none;">
+      <h2>Booking Summary</h2>
+      <div class="booking-summary">
+        <!-- Summary will be populated by JavaScript -->
+      </div>
+      
+      <div class="step-navigation">
+        <button class="back-btn">Back</button>
+        <button class="confirm-booking-btn">Confirm Booking</button>
+      </div>
+    </div>
   </div>
 </div>
-
 
     <!-- Footer -->
     <footer>
@@ -743,104 +741,6 @@ Disclaimer: braiding hair will be included without any charge.
         </div>
     </footer>
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script type="text/javascript">
-  (function () {
-    emailjs.init({
-      publicKey: "Zg6omPaiEmrx6bGic"  // ✅ your actual public key
-    });
-  })();
-
-</script>
     <script src="script.js" defer></script>
-    <script>
-      document.getElementById("contactForm")?.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const name = document.getElementById("name")?.value;
-        const email = document.getElementById("email")?.value;
-        const message = document.getElementById("message")?.value;
-
-        if (!name || !email || !message) {
-          alert("Please fill out all fields.");
-          return;
-        }
-
-        fetch("/send-message", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, message })
-        })
-        .then(res => {
-          if (res.ok) {
-            alert("✅ Message sent successfully!");
-            document.getElementById("contactForm").reset();
-          } else {
-            alert("❌ Failed to send message.");
-          }
-        })
-        .catch(err => {
-          console.error("❌ Error sending message:", err);
-          alert("❌ Something went wrong.");
-        });
-      });
-    </script>
-
-   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const openModalBtns = document.querySelectorAll(".cta-button, [href='#bookingModal']");
-    const modal = document.getElementById("bookingModal");
-    const closeModal = modal.querySelector(".close-modal");
-
-    if (openModalBtns.length && modal && closeModal) {
-      openModalBtns.forEach((btn) => {
-        btn.addEventListener("click", function (e) {
-          e.preventDefault();
-          modal.style.display = "block";
-        });
-      });
-
-      closeModal.addEventListener("click", function () {
-        modal.style.display = "none";
-      });
-
-      window.addEventListener("click", function (e) {
-        if (e.target === modal) {
-          modal.style.display = "none";
-        }
-      });
-    }
-  });
-</script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Select ALL buttons that open the modal
-    const openModalBtns = document.querySelectorAll(".cta-button, [href='#bookingModal']");
-    const modal = document.getElementById("bookingModal");
-    const closeModal = modal?.querySelector(".close-modal");
-
-    if (openModalBtns.length && modal && closeModal) {
-      openModalBtns.forEach((btn) => {
-        btn.addEventListener("click", function (e) {
-          e.preventDefault();
-          modal.style.display = "block";
-        });
-      });
-
-      closeModal.addEventListener("click", function () {
-        modal.style.display = "none";
-      });
-
-      window.addEventListener("click", function (e) {
-        if (e.target === modal) {
-          modal.style.display = "none";
-        }
-      });
-    }
-  });
-</script>
-
-    </body>
-    </html>
-
-
+</body>
+</html>
