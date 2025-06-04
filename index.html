@@ -617,93 +617,88 @@ Disclaimer: braiding hair will be included without any charge.
         </div>
     </section>
 
-    <!-- Booking Modal -->
-    
-    <div id="bookingModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Book Your Appointment</h2>
+   <!-- Booking Modal (Simplified) -->
+<div id="bookingModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Book Your Appointment</h2>
 
-            <div class="booking-steps">
-                <div class="step active" data-step="1">1. Select Service</div>
-                <div class="step" data-step="2">2. Choose Date & Time</div>
-                <div class="step" data-step="3">3. Your Details</div>
-                <div class="step" data-step="4">4. Confirmation</div>
-            </div>
+    <form
+      id="bookingForm"
+      method="POST"
+      action="https://script.google.com/macros/s/AKfycbypWGQZp6ZJJqeTVwAk8i7mv_Nj_dY6hT8qRtML3UU4zHHSFWjVtPBHA9vdmFXLZWRzFg/exec"
+      class="booking-form"
+    >
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input
+          type="text"
+          id="fullName"
+          name="name"
+          placeholder="Enter your full name"
+          required
+        >
+      </div>
 
-            <div class="step-content" id="step1">
-                <h3>Select a Service</h3>
-                <div class="service-selection">
-                    <!-- Services will be populated by JavaScript -->
-                </div>
-                <div class="step-buttons">
-                    <button class="back-btn" disabled>Back</button>
-                    <button class="next-btn" disabled>Next</button>
-                </div>
-            </div>
+      <div class="form-group">
+        <label for="bookingEmail">Email Address</label>
+        <input
+          type="email"
+          id="bookingEmail"
+          name="email"
+          placeholder="Enter your email"
+          required
+        >
+      </div>
 
-            <div class="step-content" id="step2" style="display: none;">
-                <h3>Choose Date & Time</h3>
-                <div class="date-time-selection">
-                    <div class="calendar">
-                        <!-- Calendar will be populated by JavaScript -->
-                    </div>
-                    <div class="time-slots">
-                        <!-- Time slots will be populated by JavaScript -->
-                    </div>
-                </div>
-                <div class="step-buttons">
-                    <button class="back-btn">Back</button>
-                    <button class="next-btn" disabled>Next</button>
-                </div>
-            </div>
+      <div class="form-group">
+        <label for="serviceType">Service Type</label>
+        <select id="serviceType" name="service" required>
+          <option value="" disabled selected>Select a service</option>
+          <option value="Regular Box Braids">Regular Box Braids — $160.00 (3 h)</option>
+          <option value="Fulani Braids">Fulani Braids — $180.00 (3 h)</option>
+          <option value="Passion Twist">Passion Twist — $200.00 (4 h)</option>
+          <option value="Lemonade Braids">Lemonade Braids — $120.00 (2 h)</option>
+          <option value="Senegalese Twist">Senegalese Twist — $180.00 (3 h)</option>
+          <option value="Knotless Braids">Knotless Braids — $190.00 (3 h)</option>
+          <option value="Men’s Cornrows">Men’s Cornrows — $40.00 (1.5 h)</option>
+          <option value="Women’s Cornrows">Women’s Cornrows — $40.00 (1.5 h)</option>
+          <option value="Boho Knotless Braids">Boho Knotless Braids — $200.00 (4 h)</option>
+          <option value="Faux Locs">Faux Locs — $200.00 (4 h)</option>
+          <option value="Sew-In">Sew-In — $200.00 (2 h)</option>
+          <option value="Crochet">Crochet — from $150.00 (1 h)</option>
+          <option value="Kid’s Regular Box Braids">Kid’s Regular Box Braids — from $100.00 (2 h)</option>
+          <option value="Cornrow with Extensions (Straight Back)">Cornrow w/ Extensions (Straight Back) — $70.00 (1 h)</option>
+          <option value="Kid’s Fulani Braids">Kid’s Fulani Braids — $120.00 (2 h)</option>
+          <option value="Kid’s Lemonade Braids">Kid’s Lemonade Braids — $90.00 (2 h)</option>
+        </select>
+      </div>
 
-            <div class="step-content" id="step3" style="display: none;">
-                <h3>Your Details</h3>
-                <form id="bookingForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" id="firstName" name="firstName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="bookingEmail">Email</label>
-                            <input type="email" id="bookingEmail" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="notes">Special Requests or Notes</label>
-                        <textarea id="notes" name="notes" rows="3"></textarea>
-                    </div>
-                </form>
-                <div class="step-buttons">
-                    <button class="back-btn">Back</button>
-                    <button class="next-btn">Next</button>
-                </div>
-            </div>
+      <div class="form-group">
+        <label for="bookingDate">Preferred Date</label>
+        <input
+          type="date"
+          id="bookingDate"
+          name="date"
+          required
+        >
+      </div>
 
-            <div class="step-content" id="step4" style="display: none;">
-                <h3>Confirm Your Booking</h3>
-                <div class="booking-summary">
-                    <!-- Booking summary will be populated by JavaScript -->
-                </div>
-                <button class="confirm-booking-btn">Confirm Booking</button>
-                <div class="step-buttons">
-                    <button class="back-btn">Back</button>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div class="form-group">
+        <label for="bookingNotes">Additional Notes (optional)</label>
+        <textarea
+          id="bookingNotes"
+          name="notes"
+          rows="3"
+          placeholder="Any special requests?"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit Booking</button>
+    </form>
+  </div>
+</div>
+
 
     <!-- Footer -->
     <footer>
