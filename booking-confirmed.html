@@ -6,19 +6,23 @@
   <title>Booking Confirmed | Braiding By Mary</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+    
     body {
       margin: 0;
-      padding: 0;
+      padding: 20px;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #fff7f2, #ffe6ea);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       text-align: center;
       color: #333;
     }
-
+    
     .card {
       background-color: #fff;
       padding: 40px 30px;
@@ -27,19 +31,71 @@
       max-width: 420px;
       width: 100%;
       animation: fadeIn 0.8s ease-out;
+      position: relative;
+      overflow: hidden;
     }
-
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #d63b80, #ff6b9d);
+    }
+    
+    .emoji {
+      font-size: 48px;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+    
     h1 {
       font-size: 28px;
       color: #d63b80;
       margin-bottom: 15px;
+      font-weight: 600;
     }
-
+    
     p {
       font-size: 16px;
       margin-bottom: 30px;
+      line-height: 1.6;
+      color: #555;
     }
-
+    
+    .info-box {
+      background: #f8f9fa;
+      border-left: 4px solid #d63b80;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 8px;
+      text-align: left;
+    }
+    
+    .info-box h3 {
+      margin: 0 0 10px 0;
+      color: #d63b80;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .info-box p {
+      margin: 0;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
     a.button {
       background-color: #d63b80;
       color: #fff;
@@ -47,25 +103,88 @@
       border-radius: 30px;
       text-decoration: none;
       font-weight: 600;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
+      display: inline-block;
+      min-width: 120px;
     }
-
+    
     a.button:hover {
       background-color: #b12e68;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(214, 59, 128, 0.3);
     }
-
+    
+    a.button.secondary {
+      background-color: transparent;
+      color: #d63b80;
+      border: 2px solid #d63b80;
+    }
+    
+    a.button.secondary:hover {
+      background-color: #d63b80;
+      color: #fff;
+    }
+    
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from { 
+        opacity: 0; 
+        transform: translateY(15px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .card {
+        padding: 30px 20px;
+        margin: 20px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      .button-group {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      a.button {
+        width: 100%;
+        max-width: 200px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>💖 Booking Received!</h1>
-    <p>Thank you for booking with Braiding By Mary. We'll contact you soon to confirm your appointment.</p>
-    <a href="index.html" class="button">Back to Home</a>
+    <div class="emoji">💖</div>
+    <h1>Booking Received!</h1>
+    <p>Thank you for booking with Braiding By Mary. We're excited to help you achieve your perfect hairstyle!</p>
+    
+    <div class="info-box">
+      <h3>What's Next?</h3>
+      <p>We'll contact you within 24 hours to confirm your appointment details and discuss your styling preferences.</p>
+    </div>
+    
+    <div class="button-group">
+      <a href="index.html" class="button">Back to Home</a>
+      <a href="services.html" class="button secondary">View Services</a>
+    </div>
   </div>
 </body>
 </html>
-
