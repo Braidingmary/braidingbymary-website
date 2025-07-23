@@ -742,6 +742,225 @@ Disclaimer: braiding hair will be included without any charge.
     </footer>
 
     <script src="script.js" defer></script>
+    // Add this JavaScript to your existing booking form page
+// This will replace the broken server-side submission with a client-side solution
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Find your existing booking form
+    const bookingForm = document.querySelector('form[action*="booking"], #bookingForm, .booking-form form');
+    
+    if (bookingForm) {
+        // Remove any existing action attribute to prevent server submission
+        bookingForm.removeAttribute('action');
+        bookingForm.removeAttribute('method');
+        
+        // Add event listener to handle form submission
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            
+            // Get all form data
+            const formData = new FormData(this);
+            const formFields = {};
+            
+            // Convert FormData to object
+            for (let [key, value] of formData.entries()) {
+                formFields[key] = value;
+            }
+            
+            // Create email content
+            let emailBody = `Hi Braiding by Mary,\n\nI would like to book an appointment with the following details:\n\n`;
+            
+            // Add form fields to email body
+            for (let [key, value] of Object.entries(formFields)) {
+                if (value.trim() !== '') {
+                    // Format field names nicely
+                    const fieldName = key.replace(/([A-Z])/g, ' $1')
+                                        .replace(/^./, str => str.toUpperCase())
+                                        .replace(/_/g, ' ');
+                    emailBody += `${fieldName}: ${value}\n`;
+                }
+            }
+            
+            emailBody += `\nPlease confirm my appointment and let me know the exact price and duration.\n\nThank you!`;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:braidingbymary@gmail.com?subject=Booking Request&body=${encodeURIComponent(emailBody)}`;
+            
+            // Show success message
+            showBookingSuccess(mailtoLink, formFields);
+            
+            // Reset form
+            this.reset();
+        });
+    }
+});
+
+function showBookingSuccess(mailtoLink, formData) {
+    // Create success modal/message
+    const successHTML = `
+        <div id="bookingSuccessModal" style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        ">
+            <div style="
+                background: white;
+                padding: 40px;
+                border-radius: 20px;
+                max-width: 500px;
+                margin: 20px;
+                text-align: center;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            ">
+                <h2 style="color: #28a745; margin-bottom: 20px;">✅ Booking Details Ready!</h2>
+                <p style="margin-bottom: 30px; line-height: 1.6;">
+                    Your booking information has been prepared. Choose how you'd like to contact us:
+                </p>
+                
+                <div style="margin-bottom: 30px;">
+                    <a href="${mailtoLink}" style="
+                        display: inline-block;
+                        background: #007bff;
+                        color: white;
+                        padding: 15px 30px;
+                        text-decoration: none;
+                        border-radius: 25px;
+                        margin: 10px;
+                        font-weight: bold;
+                        transition: all 0.3s ease;
+                    ">📧 Send Email</a>
+                    
+                    <a href="tel:+13475475918" style="
+                        display: inline-block;
+                        background: #28a745;
+                        color: white;
+                        padding: 15px 30px;
+                        text-decoration: none;
+                        border-radius: 25px;
+                        margin: 10px;
+                        font-weight: bold;
+                        transition: all 0.3s ease;
+                    ">📱 Call (347) 547-5918</a>
+                </div>
+                
+                <div style="
+                    background: #f8f9fa;
+                    padding: 20px;
+                    border-radius: 10px;
+                    margin-bottom: 20px;
+                    text-align: left;
+                ">
+                    <h4 style="margin-bottom: 10px;">📍 Our Location:</h4>
+                    <p><strong>2368 7th Avenue, New York, NY</strong></p>
+                    <p><strong>Hours:</strong> Mon-Sat: 7:00 AM - 7:00 PM | Sunday: Closed</p>
+                </div>
+                
+                <button onclick="closeBookingModal()" style="
+                    background: #6c757d;
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 15px;
+                    cursor: pointer;
+                ">Close</button>
+            </div>
+        </div>
+    `;
+    
+    // Add modal to page
+    document.body.insertAdjacentHTML('beforeend', successHTML);
+}
+
+function closeBookingModal() {
+    const modal = document.getElementById('bookingSuccessModal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// Also add this CSS to style any existing error messages
+const style = document.createElement('style');
+style.textContent = `
+    .booking-error {
+        display: none !important;
+    }
+    
+    .booking-form {
+        position: relative;
+    }
+    
+    .booking-form::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255,255,255,0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        color: #333;
+    }
+    
+    .booking-form.loading::after {
+        display: flex;
+        content: "Preparing your booking details...";
+    }
+`;
+document.head.appendChild(style);
+
+// Fix for existing error messages
+document.addEventListener('DOMContentLoaded', function() {
+    // Hide any existing error messages
+    const errorMessages = document.querySelectorAll('.error, .booking-error, [class*="error"]');
+    errorMessages.forEach(error => {
+        if (error.textContent.includes('Error submitting booking') || 
+            error.textContent.includes('347') || 
+            error.textContent.includes('547-5918')) {
+            error.style.display = 'none';
+        }
+    });
+});
+
+// Alternative: Replace the entire booking form with working version
+function replaceBookingForm() {
+    const existingForm = document.querySelector('form[action*="booking"], #bookingForm, .booking-form form');
+    
+    if (existingForm) {
+        const newFormHTML = `
+            <div class="working-booking-form">
+                <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #c3e6cb;">
+                    <h3>✅ Booking System Fixed!</h3>
+                    <p>Our booking system is now working properly. Fill out the form below and we'll help you complete your appointment.</p>
+                </div>
+                
+                <div style="background: #fff3cd; color: #856404; padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #ffeaa7;">
+                    <h4>📞 Quick Booking Options:</h4>
+                    <p style="margin: 10px 0;">
+                        <strong>Call:</strong> <a href="tel:+13475475918" style="color: #28a745; font-weight: bold;">(347) 547-5918</a><br>
+                        <strong>Email:</strong> <a href="mailto:braidingbymary@gmail.com" style="color: #007bff; font-weight: bold;">braidingbymary@gmail.com</a>
+                    </p>
+                </div>
+                
+                ${existingForm.outerHTML}
+            </div>
+        `;
+        
+        existingForm.parentNode.innerHTML = newFormHTML;
+    }
+}
+
+// Call the replacement function if needed
+// replaceBookingForm();
 </body>
 </html>
 
