@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
   // Set current year in footer
   document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -520,37 +521,288 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   }
 });
-document.getElementById("booking-form").addEventListener("submit", function (e) {
-  e.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const service = document.getElementById("service").value;
-  const date = document.getElementById("date").value;
-  const notes = document.getElementById("notes").value;
+// Add some basic styling for the booking modal
+document.head.insertAdjacentHTML('beforeend', `
+<style>
+  /* Service options */
+  .service-option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border: 1px solid #eee;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+  }
 
-  fetch("https://script.google.com/macros/s/AKfycbypWGQZp6ZJJqeTVwAk8i7mv_Nj_dY6hT8qRtML3UU4zHHSFWjVtPBHA9vdmFXLZWRzFg/exec", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams({
-      name,
-      email,
-      service,
-      date,
-      notes,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        window.location.href = data.redirect;
+  .service-option:hover, .service-option.selected {
+      border-color: #8a2be2;
+      background-color: rgba(138, 43, 226, 0.05);
+  }
+
+  .service-option-details h4 {
+      margin-bottom: 0.5rem;
+  }
+
+  .service-option-meta {
+      display: flex;
+      gap: 1rem;
+      color: #666;
+      font-size: 0.875rem;
+  }
+
+  .service-option-select {
+      display: flex;
+      align-items: center;
+  }
+
+  .service-option-select input {
+      margin-right: 0.5rem;
+  }
+
+  /* Calendar */
+  .calendar {
+      margin-bottom: 2rem;
+  }
+
+  .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+  }
+
+  .calendar-header button {
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: #555;
+  }
+
+  .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+  }
+
+  .weekday {
+      text-align: center;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.5rem;
+  }
+
+  .day {
+      text-align: center;
+      padding: 0.75rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+  }
+
+  .day:hover:not(.empty):not(.disabled) {
+      background-color: rgba(138, 43, 226, 0.1);
+  }
+
+  .day.today {
+      background-color: rgba(138, 43, 226, 0.2);
+      font-weight: 600;
+  }
+
+  .day.selected {
+      background-color: #8a2be2;
+      color: white;
+      font-weight: 600;
+  }
+
+  .day.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+  }
+
+  .day.empty {
+      cursor: default;
+  }
+
+  /* Time slots */
+  .time-slots h4 {
+      margin-bottom: 1rem;
+  }
+
+  .time-slots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+  }
+
+  .time-slot {
+      text-align: center;
+      padding: 0.75rem;
+      border: 1px solid #eee;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+  }
+
+  .time-slot:hover:not(.disabled) {
+      border-color: #8a2be2;
+      background-color: rgba(138, 43, 226, 0.05);
+  }
+
+  .time-slot.selected {
+      border-color: #8a2be2;
+      background-color: #8a2be2;
+      color: white;
+  }
+
+  .time-slot.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      text-decoration: line-through;
+  }
+
+  /* Booking summary */
+  .summary-section {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #eee;
+  }
+
+  .summary-section:last-child {
+      border-bottom: none;
+  }
+
+  .summary-section h4 {
+      margin-bottom: 0.5rem;
+      color: #555;
+  }
+
+  .summary-section p {
+      margin-bottom: 0.25rem;
+  }
+</style>
+`);
+
+document.getElementById("sendMessageBtn")?.addEventListener("click", () => {
+const name = document.getElementById("contactName")?.value;
+const email = document.getElementById("contactEmail")?.value;
+const message = document.getElementById("contactMessage")?.value;
+
+if (!name || !email || !message) {
+  alert("Please complete all message fields.");
+  return;
+}
+
+    fetch("/send-message", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, message })
+    })
+    .then(res => res.text())
+    .then(data => {
+      if (data.includes("Message sent")) {
+        alert("✅ Message sent!");
+        document.getElementById("contactForm")?.reset(); // Optional: clears form
       } else {
-        alert("Booking failed: " + data.error);
+        alert("❌ Failed to send message.");
       }
     })
-    .catch((err) => {
-      alert("Error: " + err.message);
+    .catch(() => alert("❌ Error sending message."));
+
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const bookingForm = document.getElementById('bookingForm');
+  const step3NextBtn = document.querySelector('#step3 .next-btn');
+
+  if (!bookingForm || !step3NextBtn) return;
+
+  const requiredInputs = bookingForm.querySelectorAll('input[required]');
+
+  function validateBookingForm() {
+    let allFilled = true;
+    requiredInputs.forEach(input => {
+      if (!input.value.trim()) {
+        allFilled = false;
+      }
     });
+
+    step3NextBtn.disabled = !allFilled;
+  }
+
+  requiredInputs.forEach(input => {
+    input.addEventListener('input', validateBookingForm);
+  });
+
+  validateBookingForm();
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".service-card").forEach(card => {
+    const desc = card.querySelector(".service-description");
+
+    // Check if it overflows and if button already exists
+    if (
+      desc &&
+      desc.scrollHeight > desc.clientHeight &&
+      !desc.nextElementSibling?.classList?.contains("read-more-btn")
+    ) {
+      const btn = document.createElement("button");
+      btn.className = "read-more-btn";
+      btn.textContent = "Read more";
+
+      // Insert button right after description
+      desc.insertAdjacentElement("afterend", btn);
+
+      btn.addEventListener("click", () => {
+        const isExpanded = desc.classList.toggle("expanded");
+        btn.textContent = isExpanded ? "Show less" : "Read more";
+      });
+    }
+  });
+});
+
+
+const bookingForm = document.getElementById("booking-form");
+let bookingSubmitted = false;
+
+bookingForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (bookingSubmitted) return;
+  bookingSubmitted = true;
+
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData.entries());
+
+  const res = await fetch("/send-booking", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  const result = await res.text();
+  alert(result);
+  bookingSubmitted = false;
+});
+
+
+fetch("/send-booking", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    firstName,
+    lastName,
+    email,
+    phone,
+    service,
+    price, // ✅ make sure this is defined in your form or code
+    date,
+    time,
+    notes
+  })
 });
